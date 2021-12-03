@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexagonalArchitecture", "HexagonalArchitecture\HexagonalArchitecture.csproj", "{A3936A82-0094-4127-83AA-FDE614428498}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{45D4E6CB-A926-4E34-9455-044657C4095E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{75F981DA-9218-4158-9ABD-E740D824986C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{19BEBB91-680E-4FEC-B816-CE259AA128E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{06449DA8-4A67-4136-A893-9ED691FFC83A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{35EA5EB1-F12C-4665-86B0-40157E6DA97E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3936A82-0094-4127-83AA-FDE614428498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3936A82-0094-4127-83AA-FDE614428498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3936A82-0094-4127-83AA-FDE614428498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3936A82-0094-4127-83AA-FDE614428498}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06449DA8-4A67-4136-A893-9ED691FFC83A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06449DA8-4A67-4136-A893-9ED691FFC83A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06449DA8-4A67-4136-A893-9ED691FFC83A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06449DA8-4A67-4136-A893-9ED691FFC83A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A3936A82-0094-4127-83AA-FDE614428498} = {35EA5EB1-F12C-4665-86B0-40157E6DA97E}
+		{19BEBB91-680E-4FEC-B816-CE259AA128E7} = {75F981DA-9218-4158-9ABD-E740D824986C}
+		{06449DA8-4A67-4136-A893-9ED691FFC83A} = {19BEBB91-680E-4FEC-B816-CE259AA128E7}
+		{35EA5EB1-F12C-4665-86B0-40157E6DA97E} = {45D4E6CB-A926-4E34-9455-044657C4095E}
+	EndGlobalSection
+EndGlobal
