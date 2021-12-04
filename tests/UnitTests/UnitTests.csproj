@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\src\HexagonalArchitecture\HexagonalArchitecture.csproj" />
       <ProjectReference Include="..\HexagonalArchitecture\HexagonalArchitecture.csproj" />
     </ItemGroup>
 

@@ -1,4 +1,3 @@
-using System.Collections.Immutable;
 using HexagonalArchitecture.Domain.Shared.Event;
 using MediatR;
 
@@ -17,13 +16,17 @@ public class DomainEventDispatcherUsingMediatR : DomainEventDispatcher
     
     public void Dispatch(DomainEvent domainEvent)
     {
-        // _mediator.Publish(domainEvent);
+        _mediator.Publish(ToNotification(domainEvent));
         _logger.Log(LogLevel.Information, "Dispatching: " + nameof(domainEvent));
     }
     
     public void DispatchAll(List<DomainEvent> domainEvents)
     {
-        domainEvents.Select((d) => d).ToList().ForEach(Dispatch);
+        domainEvents.ToList().ForEach(Dispatch);
     }
-    
+
+    private INotification ToNotification(DomainEvent domainEvent)
+    {
+        return (INotification)Activator.CreateInstance(typeof(DomainEventNotification<>).MakeGenericType(domainEvent.GetType()), domainEvent)!;
+    }
 }
