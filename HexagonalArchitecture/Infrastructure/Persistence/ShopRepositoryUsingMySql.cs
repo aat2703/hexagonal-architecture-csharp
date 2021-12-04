@@ -13,7 +13,12 @@ namespace HexagonalArchitecture.Infrastructure.Persistence
         {
             _shopDbContext = shopDbContext;
         }
-        
+
+        public ShopId NextIdentity()
+        {
+            return ShopId.FromGuid(Guid.NewGuid());
+        }
+
         public async Task<Shop> GetShopById(ShopId id)
         {
             await using var context = _shopDbContext;

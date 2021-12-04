@@ -19,7 +19,7 @@ namespace HexagonalArchitecture.Domain.Shop.Entity
         {
             var shop = new Shop(id, name);
             
-            shop.AddDomainEvent(new ShopRegistered(id.ToGuid(), name.ToString()));
+            shop.RecordThat(new ShopRegistered(id.ToGuid(), name.ToString()));
 
             return shop;
         }
@@ -41,7 +41,7 @@ namespace HexagonalArchitecture.Domain.Shop.Entity
                 return;
             }
             
-            DomainEvents.Add(new ShopNameChanged(Id, Name.ToString(), name.ToString()));
+            RecordThat(new ShopNameChanged(Id, Name.ToString(), name.ToString()));
             
             Name = name;
         }

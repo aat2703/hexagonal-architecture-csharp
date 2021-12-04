@@ -1,9 +1,8 @@
-using System;
-using MediatR;
+using HexagonalArchitecture.Domain.Shared.Event;
 
 namespace HexagonalArchitecture.Domain.Shop.Event
 {
-    public class ShopNameChanged : INotification
+    public class ShopNameChanged : DomainEvent
     {
         public Guid ShopId { get; }
         public string OldName { get; }

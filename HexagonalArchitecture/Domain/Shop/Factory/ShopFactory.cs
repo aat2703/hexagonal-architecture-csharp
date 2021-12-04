@@ -1,15 +1,21 @@
-using System;
 using HexagonalArchitecture.Application.Shop.RegisterShop;
 using HexagonalArchitecture.Domain.Shop.Entity;
+using HexagonalArchitecture.Domain.Shop.Repository;
 
 namespace HexagonalArchitecture.Domain.Shop.Factory
 {
     public class ShopFactory 
     {
+        private readonly ShopRepository _shopRepository;
+
+        public ShopFactory(ShopRepository shopRepository)
+        {
+            _shopRepository = shopRepository;
+        }
         public Entity.Shop BuildFromRegisterShopCommand(RegisterShopCommand command)
         {
             return Entity.Shop.Register(
-                ShopId.FromGuid(Guid.NewGuid()),
+                _shopRepository.NextIdentity(),
                 ShopName.FromString(command.Name)
             );
         }

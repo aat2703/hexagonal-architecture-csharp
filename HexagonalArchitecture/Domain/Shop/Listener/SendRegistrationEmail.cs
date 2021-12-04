@@ -5,11 +5,4 @@ using MediatR;
 
 namespace HexagonalArchitecture.Domain.Shop.Listener
 {
-    public class SendRegistrationEmail : INotificationHandler<ShopRegistered>
-    {
-        public Task Handle(ShopRegistered notification, CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
-    }
 }

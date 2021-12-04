@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using HexagonalArchitecture.Domain.Shared.Event;
 using HexagonalArchitecture.Domain.Shop.Factory;
 using HexagonalArchitecture.Domain.Shop.Repository;
 using MediatR;
@@ -10,17 +10,17 @@ namespace HexagonalArchitecture.Application.Shop.RegisterShop
         private readonly ShopFactory _shopFactory;
         
         private readonly ShopRepository _shopRepository;
+        private readonly DomainEventDispatcher _dispatcher;
 
-        private readonly IMediator _mediator;
         public RegisterShopService(
             ShopFactory shopFactory, 
             ShopRepository shopRepository,
-            IMediator mediator
+            DomainEventDispatcher dispatcher
         )
         {
             _shopFactory = shopFactory;
             _shopRepository = shopRepository;
-            _mediator = mediator;
+            _dispatcher = dispatcher;
         }
         
         protected override async Task<Domain.Shop.Entity.Shop> Handle(RegisterShopCommand command)
@@ -29,7 +29,7 @@ namespace HexagonalArchitecture.Application.Shop.RegisterShop
              
              await _shopRepository.Save(shop);
              
-             shop.DomainEvents.ForEach(e => _mediator.Publish(e));
+             _dispatcher.DispatchAll(shop.ReleaseEvents());
              
              return shop;
         }
