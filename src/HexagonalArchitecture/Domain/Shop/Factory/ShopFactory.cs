@@ -1,4 +1,4 @@
-using HexagonalArchitecture.Application.Shop.RegisterShop;
+using HexagonalArchitecture.Application.UseCases.Shop.RegisterShop;
 using HexagonalArchitecture.Domain.Shop.Entity;
 using HexagonalArchitecture.Domain.Shop.Repository;
 

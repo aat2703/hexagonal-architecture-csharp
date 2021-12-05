@@ -1,4 +1,4 @@
-using HexagonalArchitecture.Application.Shop.RegisterShop;
+using HexagonalArchitecture.Application.UseCases.Shop.RegisterShop;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

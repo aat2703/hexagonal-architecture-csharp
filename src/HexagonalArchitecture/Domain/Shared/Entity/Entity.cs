@@ -1,17 +1,17 @@
-using HexagonalArchitecture.Domain.Shared.Event;
+using MediatR;
 
 namespace HexagonalArchitecture.Domain.Shared.Entity
 {
     public abstract class Entity
     {
-        private readonly List<DomainEvent> _domainEvents = new List<DomainEvent>();
+        private readonly List<INotification> _domainEvents = new();
         
-        public void RecordThat(DomainEvent domainEvent)
+        public void RecordThat(INotification domainEvent)
         {
             _domainEvents.Add(domainEvent);
         }
         
-        public List<DomainEvent> ReleaseEvents()
+        public List<INotification> ReleaseEvents()
         {
             var events = _domainEvents.ToList();
             

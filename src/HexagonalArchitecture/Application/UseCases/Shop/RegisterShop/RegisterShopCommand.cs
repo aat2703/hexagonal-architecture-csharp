@@ -1,7 +1,6 @@
-using System.Threading.Tasks;
 using MediatR;
 
-namespace HexagonalArchitecture.Application.Shop.RegisterShop
+namespace HexagonalArchitecture.Application.UseCases.Shop.RegisterShop
 {
     public class RegisterShopCommand : IRequest<Task<Domain.Shop.Entity.Shop>>
     {

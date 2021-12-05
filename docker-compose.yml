@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  hexagonal-architecture-db:
+    image: mysql:8
+    platform: linux/amd64
+    container_name: "hexagonal-architecture-db"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_PASSWORD: 1337
+      MYSQL_USER: aat
+      MYSQL_ROOT_PASSWORD: 1337
+      MYSQL_ROOT_USER: aat
+      MYSQL_DATABASE: hexagonal_architecture
+  hexagonal-architecture-rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: "hexagonal-architecture-rabbitmq"
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq

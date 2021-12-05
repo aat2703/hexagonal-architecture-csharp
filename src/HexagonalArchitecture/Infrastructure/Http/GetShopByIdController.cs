@@ -1,9 +1,6 @@
 
-using System;
-using System.Threading.Tasks;
-using HexagonalArchitecture.Application.Shop.GetShopById;
+using HexagonalArchitecture.Application.UseCases.Shop.GetShopById;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HexagonalArchitecture.Infrastructure.Http

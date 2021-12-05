@@ -1,9 +1,6 @@
-using System;
-using System.Threading.Tasks;
-using HexagonalArchitecture.Domain.Shop.Entity;
 using MediatR;
 
-namespace HexagonalArchitecture.Application.Shop.GetShopById
+namespace HexagonalArchitecture.Application.UseCases.Shop.GetShopById
 {
     public class GetShopByIdCommand : IRequest<Task<Domain.Shop.Entity.Shop>>
     {

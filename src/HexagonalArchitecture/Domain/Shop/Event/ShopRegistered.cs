@@ -1,8 +1,8 @@
-using HexagonalArchitecture.Domain.Shared.Event;
+using MediatR;
 
 namespace HexagonalArchitecture.Domain.Shop.Event
 {
-    public class ShopRegistered : DomainEvent
+    public class ShopRegistered : INotification
     {
         public Guid Id { get; }
         public string Name { get; }

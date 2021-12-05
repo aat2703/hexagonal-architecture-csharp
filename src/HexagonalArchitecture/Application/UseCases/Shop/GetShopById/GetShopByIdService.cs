@@ -1,9 +1,8 @@
-using System.Threading.Tasks;
 using HexagonalArchitecture.Domain.Shop.Entity;
 using HexagonalArchitecture.Domain.Shop.Repository;
 using MediatR;
 
-namespace HexagonalArchitecture.Application.Shop.GetShopById
+namespace HexagonalArchitecture.Application.UseCases.Shop.GetShopById
 {
     public class GetShopByIdService : RequestHandler<GetShopByIdCommand, Task<Domain.Shop.Entity.Shop>>
     {
