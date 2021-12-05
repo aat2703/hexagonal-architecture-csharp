@@ -1,49 +1,48 @@
 using HexagonalArchitecture.Domain.Shop.Event;
 
-namespace HexagonalArchitecture.Domain.Shop.Entity
+namespace HexagonalArchitecture.Domain.Shop.Entity;
+
+public class Shop : Shared.Entity.Entity
 {
-    public class Shop : Shared.Entity.Entity
+    public Guid Id { get; set; }
+
+    public ShopName Name { get; set; }
+    public Shop(ShopId id, ShopName name)
     {
-        public Guid Id { get; set; }
-
-        public ShopName Name { get; set; }
-        public Shop(ShopId id, ShopName name)
-        {
-            Id = id.ToGuid();
-            Name = name;
-        }
+        Id = id.ToGuid();
+        Name = name;
+    }
         
-        public Shop() {}
+    public Shop() {}
         
-        public static Shop Register(ShopId id, ShopName name)
-        {
-            var shop = new Shop(id, name);
+    public static Shop Register(ShopId id, ShopName name)
+    {
+        var shop = new Shop(id, name);
             
-            shop.RecordThat(new ShopRegistered(id.ToGuid(), name.ToString()));
+        shop.RecordThat(new ShopRegistered(id.ToGuid(), name.ToString()));
 
-            return shop;
-        }
+        return shop;
+    }
 
-        public ShopId GetId()
-        {
-            return ShopId.FromGuid(Id);
-        }
+    public ShopId GetId()
+    {
+        return ShopId.FromGuid(Id);
+    }
         
-        public ShopName GetName()
-        {
-            return Name;
-        }
+    public ShopName GetName()
+    {
+        return Name;
+    }
         
-        public void ChangeName(ShopName name)
+    public void ChangeName(ShopName name)
+    {
+        if (name.Equals(Name))
         {
-            if (name.Equals(Name))
-            {
-                return;
-            }
-            
-            RecordThat(new ShopNameChanged(Id, Name.ToString(), name.ToString()));
-            
-            Name = name;
+            return;
         }
+            
+        RecordThat(new ShopNameChanged(Id, Name.ToString(), name.ToString()));
+            
+        Name = name;
     }
 }

@@ -1,14 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace HexagonalArchitecture.Infrastructure.Http
+namespace HexagonalArchitecture.Infrastructure.Http;
+
+public class RegisterShopRequest
 {
-    public class RegisterShopRequest
-    {
-        [Required]
-        public string Name { get; set; }
+    [Required]
+    public string Name { get; set; }
         
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-    }
+    [Required]
+    [EmailAddress]
+    public string Email { get; set; }
 }
