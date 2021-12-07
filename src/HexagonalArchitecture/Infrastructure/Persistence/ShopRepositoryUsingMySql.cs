@@ -8,7 +8,7 @@ namespace HexagonalArchitecture.Infrastructure.Persistence;
 
 public class ShopRepositoryUsingMySql : ShopRepository
 {
-    private ShopDbContext _shopDbContext;
+    private readonly ShopDbContext _shopDbContext;
     public ShopRepositoryUsingMySql(ShopDbContext shopDbContext)
     {
         _shopDbContext = shopDbContext;
@@ -46,6 +46,13 @@ public class ShopRepositoryUsingMySql : ShopRepository
             _shopDbContext.Update(shop);
         }
             
+        await _shopDbContext.SaveChangesAsync();
+    }
+
+    public async Task Remove(Shop shop)
+    {
+        _shopDbContext.Remove(shop);
+        
         await _shopDbContext.SaveChangesAsync();
     }
 }

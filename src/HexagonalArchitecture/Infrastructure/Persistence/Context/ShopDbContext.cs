@@ -12,10 +12,11 @@ public class ShopDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         var shop = modelBuilder.Entity<Shop>();
-
+        
         shop.ToTable("shops");
 
         shop.HasKey("Id");
+        
         shop.OwnsOne(
             s => s.Name,
             na =>
@@ -23,6 +24,14 @@ public class ShopDbContext : DbContext
                 na.Property(p => p.Name).HasColumnName("Name");
             }
         );
+        shop.OwnsOne(
+            s => s.Email,
+            na =>
+            {
+                na.Property(p => p.Email).HasColumnName("Email");
+            }
+        );
+        
         base.OnModelCreating(modelBuilder);
     }
         

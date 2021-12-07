@@ -5,7 +5,7 @@ namespace HexagonalArchitecture.Domain.Shop.Entity;
 [Owned]
 public class ShopName
 {
-    public string Name { get; set; } = null!;
+    public string Name { get; }
 
     public ShopName(string name)
     {

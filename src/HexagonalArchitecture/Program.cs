@@ -1,10 +1,12 @@
 using System.Reflection;
+using FluentValidation.AspNetCore;
 using HexagonalArchitecture.Domain.Shop.Factory;
 using HexagonalArchitecture.Domain.Shop.Repository;
 using HexagonalArchitecture.Infrastructure.Http.Filter;
 using HexagonalArchitecture.Infrastructure.Persistence;
 using HexagonalArchitecture.Infrastructure.Persistence.Context;
 using MediatR;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,8 @@ services.AddScoped<ShopFactory>();
 services.AddMediatR(Assembly.GetCallingAssembly());
 services.AddLogging();
 services.AddSwaggerGen();
+services.AddMvc().AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<Program>());
+services.AddFluentValidationRulesToSwagger();
 
 services.AddControllers(option=>
 {

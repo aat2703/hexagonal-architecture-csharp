@@ -1,8 +1,9 @@
+using HexagonalArchitecture.Application.UseCases.Shop.DataTransferObjects;
 using MediatR;
 
 namespace HexagonalArchitecture.Application.UseCases.Shop.GetShopById
 {
-    public class GetShopByIdCommand : IRequest<Task<Domain.Shop.Entity.Shop>>
+    public class GetShopByIdCommand : IRequest<Task<ShopData>>
     {
         public Guid Id { get; }
 

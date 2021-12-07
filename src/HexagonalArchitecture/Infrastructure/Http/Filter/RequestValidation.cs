@@ -1,3 +1,4 @@
+using HexagonalArchitecture.Infrastructure.Http.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -7,11 +8,22 @@ public class RequestValidation : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext context)
     {
-        if (!context.ModelState.IsValid)
+        if (context.ModelState.IsValid)
         {
-            context.Result = new UnprocessableEntityObjectResult(context.ModelState);
+            base.OnActionExecuting(context);
+            return;
         }
         
-        base.OnActionExecuting(context);
+        var response = new ErrorResponse();
+
+        var model = new ErrorModel
+        {
+            FieldName = "Min besked",
+            Message = "Besked"
+        };
+        
+        response.AddError(model);
+        
+        context.Result = new BadRequestObjectResult(response);
     }
 }
