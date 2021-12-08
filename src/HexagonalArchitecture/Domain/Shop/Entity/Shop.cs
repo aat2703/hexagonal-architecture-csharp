@@ -4,45 +4,31 @@ namespace HexagonalArchitecture.Domain.Shop.Entity;
 
 public class Shop : Shared.Entity.Entity
 {
-    public Guid Id { get; }
+    public Guid Id { get; init; }
 
-    public ShopName Name { get; set; }
+    public ShopName Name { get; private set; }
     
-    public ShopEmail Email { get; }
+    public ShopEmail Email { get; private set; }
+    
+    public ShopCreated Created { get; private set; }
 
-    public Shop(ShopId id, ShopName name, ShopEmail email)
-    {
-        Id = id.ToGuid();
-        Name = name;
-        Email = email;
-    }
-        
     public Shop() {}
         
-    public static Shop Register(ShopId id, ShopName name, ShopEmail email)
+    public static Shop Register(ShopId id, ShopName name, ShopEmail email, ShopCreated created)
     {
-        var shop = new Shop(id, name, email);
+        var shop = new Shop
+        {
+            Id = id.ToGuid(),
+            Name = name,
+            Email = email,
+            Created = created
+        };
         
         shop.RecordThat(new ShopRegistered(id.ToGuid(), name.ToString(), email.ToString()));
         
         return shop;
     }
 
-    public ShopId GetId()
-    {
-        return ShopId.FromGuid(Id);
-    }
-        
-    public ShopName GetName()
-    {
-        return Name;
-    }
-    
-    public ShopEmail GetEmail()
-    {
-        return Email;
-    }
-    
     public void ChangeName(ShopName name)
     {
         if (name.Equals(Name))

@@ -27,7 +27,7 @@ public class RegisterShopService : RequestHandler<RegisterShopCommand, Task<Shop
         var shop = _shopFactory.BuildFromRegisterShopCommand(command);
         
         await _shopRepository.Save(shop);
-              
+        
         shop.ReleaseEvents().ForEach(domainEvent => _mediator.Publish(domainEvent));
         
         return ShopData.FromShop(shop);

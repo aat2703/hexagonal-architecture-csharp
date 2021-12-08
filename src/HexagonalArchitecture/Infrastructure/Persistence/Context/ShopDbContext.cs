@@ -32,6 +32,14 @@ public class ShopDbContext : DbContext
             }
         );
         
+        shop.OwnsOne(
+            s => s.Created,
+            na =>
+            {
+                na.Property(p => p.Created).HasColumnName("Created").HasColumnType("Date");
+            }
+        );
+        
         base.OnModelCreating(modelBuilder);
     }
         

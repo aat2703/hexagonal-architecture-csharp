@@ -2,10 +2,10 @@ namespace HexagonalArchitecture.Infrastructure.Http.Response;
 
 public class ErrorResponse
 {
-    public List<ErrorModel> Errors { get; } = new();
+    public List<ErrorModel> Errors { get; }
     
-    public void AddError(ErrorModel error)
+    public ErrorResponse(List<ErrorModel> errors)
     {
-        Errors.Add(error);
+        Errors = errors;
     }
 }

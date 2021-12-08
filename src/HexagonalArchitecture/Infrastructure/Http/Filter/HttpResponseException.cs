@@ -1,3 +1,4 @@
+using HexagonalArchitecture.Infrastructure.Http.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -15,8 +16,18 @@ public class HttpResponseExceptionFilter : IActionFilter
         {
             return;
         }
+
+        var errors = new List<ErrorModel>();
+
+        errors.Add(new ErrorModel
+        {
+            Context = context.Exception.Source,
+            Message = context.Exception?.Message ?? "ExceptionMessageNotFound"
+        });
         
-        context.Result = new OkObjectResult(context.Exception.InnerException?.Message);
+        var response = new ErrorResponse(errors);
+        
+        context.Result = new OkObjectResult(response);
 
         context.ExceptionHandled = true;
     }

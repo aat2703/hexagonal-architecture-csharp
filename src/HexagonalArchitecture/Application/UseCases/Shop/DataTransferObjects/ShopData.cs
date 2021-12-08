@@ -7,20 +7,17 @@ public class ShopData
     public String Name;
 
     public String Email;
-    
-    public ShopData(Guid id, string name, string email)
-    {
-        Id = id;
-        Name = name;
-        Email = email;
-    }
+
+    public DateTime Created;
     
     public static ShopData FromShop(Domain.Shop.Entity.Shop shop)
     {
-        return new ShopData(
-            shop.Id,
-            shop.GetName().ToString(),
-            shop.GetEmail().ToString()
-        );
+        return new ShopData
+        {
+            Id = shop.Id,
+            Name = shop.Name.ToString(),
+            Email = shop.Email.ToString(),
+            Created = shop.Created.ToDateTime()
+        };
     }
 }

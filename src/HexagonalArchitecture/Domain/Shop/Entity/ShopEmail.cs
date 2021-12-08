@@ -1,3 +1,4 @@
+using System.Net.Mail;
 using Microsoft.EntityFrameworkCore;
 
 namespace HexagonalArchitecture.Domain.Shop.Entity;
@@ -9,9 +10,9 @@ public class ShopEmail
     
     public ShopEmail(string email)
     {
-        Email = email;
+        Email = new MailAddress(email).Address;
     }
-        
+    
     public ShopEmail() {}
 
     public static ShopEmail FromString(string email)
@@ -22,10 +23,5 @@ public class ShopEmail
     public override string ToString()
     {
         return Email;
-    }
-
-    public bool Equals(ShopEmail other)
-    {
-        return Email == other.Email;
     }
 }

@@ -17,7 +17,7 @@ public class RegisterShopController : Controller
     
     [HttpPost("/shops")]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(RegisterShopResponse))]
-    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, Type = typeof(ErrorResponse))]
     [RequestValidation]
     public async Task<IActionResult> Handle([FromBody] RegisterShopRequest request)
     {

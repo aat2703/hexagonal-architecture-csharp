@@ -17,7 +17,8 @@ public class ShopFactory
         return Entity.Shop.Register(
             _shopRepository.NextIdentity(),
             ShopName.FromString(command.Name),
-            ShopEmail.FromString(command.Email)
+            ShopEmail.FromString(command.Email),
+            ShopCreated.FromDateTime(DateTime.UtcNow)
         );
     }
 }

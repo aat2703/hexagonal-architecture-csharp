@@ -14,16 +14,15 @@ public class RequestValidation : ActionFilterAttribute
             return;
         }
         
-        var response = new ErrorResponse();
-
-        var model = new ErrorModel
-        {
-            FieldName = "Min besked",
-            Message = "Besked"
-        };
+        var errors = context.ModelState.Values.Where(x => x.Errors.Count > 0)
+            .SelectMany(x => x.Errors)
+            .Select(x => new ErrorModel
+            {
+                Context = x.Exception?.Source ?? null,
+                Message = x.ErrorMessage
+            })
+            .ToList();
         
-        response.AddError(model);
-        
-        context.Result = new BadRequestObjectResult(response);
+        context.Result = new UnprocessableEntityObjectResult(new ErrorResponse(errors));
     }
 }

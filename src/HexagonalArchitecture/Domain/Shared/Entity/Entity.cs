@@ -10,11 +10,11 @@ public abstract class Entity
     {
         _domainEvents.Add(domainEvent);
     }
-        
+    
     public List<INotification> ReleaseEvents()
     {
         var events = _domainEvents.ToList();
-            
+        
         _domainEvents.Clear();
             
         return events;

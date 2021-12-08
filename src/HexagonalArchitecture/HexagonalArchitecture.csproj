@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="Application\UseCases" />
-      <Folder Include="Infrastructure\Http\Shop\Response" />
     </ItemGroup>
 
     <ItemGroup>
