@@ -37,6 +37,10 @@ public class ShopDbContext : DbContext
             na =>
             {
                 na.Property(p => p.Created).HasColumnName("Created").HasColumnType("Date");
+                na.Property(p => p.Created).HasConversion(
+                    v => v,
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc)
+                );
             }
         );
         

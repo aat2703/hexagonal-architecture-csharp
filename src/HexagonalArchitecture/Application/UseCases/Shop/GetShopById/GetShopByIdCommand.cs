@@ -5,16 +5,14 @@ namespace HexagonalArchitecture.Application.UseCases.Shop.GetShopById
 {
     public class GetShopByIdCommand : IRequest<Task<ShopData>>
     {
-        public Guid Id { get; }
-
-        private GetShopByIdCommand(Guid id)
-        {
-            Id = id;
-        }
+        public Guid Id { get; init; }
 
         public static GetShopByIdCommand FromId(Guid id)
         {
-            return new GetShopByIdCommand(id);
+            return new GetShopByIdCommand
+            {
+                Id = id
+            };
         }
     }
 }

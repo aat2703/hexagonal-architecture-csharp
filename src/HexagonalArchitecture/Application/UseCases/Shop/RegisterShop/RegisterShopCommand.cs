@@ -5,9 +5,9 @@ namespace HexagonalArchitecture.Application.UseCases.Shop.RegisterShop
 {
     public class RegisterShopCommand : IRequest<Task<ShopData>>
     {
-        public string Name { get; set; }
+        public string Name { get; init; }
         
-        public string Email { get; set; }
+        public string Email { get; init; }
         
         public static RegisterShopCommand From(string name, string email)
         {

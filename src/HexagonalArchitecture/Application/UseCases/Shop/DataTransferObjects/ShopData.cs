@@ -2,13 +2,13 @@ namespace HexagonalArchitecture.Application.UseCases.Shop.DataTransferObjects;
 
 public class ShopData
 {
-    public Guid Id;
+    public Guid Id { get; init; }
     
-    public String Name;
+    public String Name { get; init; }
 
-    public String Email;
+    public String Email { get; init; }
 
-    public DateTime Created;
+    public DateTime Created { get; init; }
     
     public static ShopData FromShop(Domain.Shop.Entity.Shop shop)
     {

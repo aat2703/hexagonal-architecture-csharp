@@ -4,13 +4,13 @@ namespace HexagonalArchitecture.Infrastructure.Http.Shop.RegisterShop;
 
 public class RegisterShopResponse
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
         
-    public string Name { get; set; }
+    public string Name { get; init; }
     
-    public string Email { get; set; }
+    public string Email { get; init; }
     
-    public DateTime Created { get; set; }
+    public DateTime Created { get; init; }
     
     public static RegisterShopResponse FromShopData(ShopData data)
     {
