@@ -1,17 +1,16 @@
+using HexagonalArchitecture.Domain.Shop.Entity;
 using MediatR;
 
 namespace HexagonalArchitecture.Domain.Shop.Event;
 
 public class ShopRegistered : INotification
 {
-    public Guid Id { get; }
-    public string Name { get; }
+    public ShopId Id { get; init; }
     
-    public string Email { get; }
+    public ShopName Name { get; init; }
+    
+    public ShopEmail Email { get; init; }
+    
+    public ShopCreated Created { get; init; }
 
-    public ShopRegistered(Guid id, string name, string email)
-    {
-        Id = id;
-        Name = name;
-    }
 }

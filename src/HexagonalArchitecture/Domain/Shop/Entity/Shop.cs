@@ -24,11 +24,23 @@ public class Shop : Shared.Entity.Entity
             Created = created
         };
         
-        shop.RecordThat(new ShopRegistered(id.ToGuid(), name.ToString(), email.ToString()));
+        shop.RecordThat(new ShopRegistered
+            {
+                Id = id,
+                Name = name,
+                Email = email,
+                Created = created
+            }
+        );
         
         return shop;
     }
 
+    public ShopId GetId()
+    {
+        return ShopId.FromGuid(Id);
+    }
+    
     public void ChangeName(ShopName name)
     {
         if (name.Equals(Name))
@@ -36,7 +48,13 @@ public class Shop : Shared.Entity.Entity
             return;
         }
             
-        RecordThat(new ShopNameChanged(Id, Name.ToString(), name.ToString()));
+        RecordThat(new ShopNameChanged
+            {
+                ShopId = GetId(),
+                NewName = name,
+                OldName = Name
+            }    
+        );
             
         Name = name;
     }
