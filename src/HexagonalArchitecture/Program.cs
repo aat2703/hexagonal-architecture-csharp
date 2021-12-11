@@ -9,6 +9,7 @@ using HexagonalArchitecture.Infrastructure.SignalR;
 using MediatR;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,13 +17,38 @@ var services = builder.Services;
 
 services.AddScoped<ShopRepository, ShopRepositoryUsingMySql>();
 services.AddScoped<ShopFactory>();
-services.AddTransient<ShopHub>();
+services.AddSingleton<ShopHub>();
 services.AddMediatR(Assembly.GetCallingAssembly());
 services.AddLogging();
 services.AddSwaggerGen();
 services.AddMvc().AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<Program>());
 services.AddFluentValidationRulesToSwagger();
-services.AddSignalR().AddStackExchangeRedis("localhost");
+services.AddSignalR()
+    .AddStackExchangeRedis(o =>
+    {
+        o.ConnectionFactory = async writer =>
+        {
+            var config = new ConfigurationOptions
+            {
+                AbortOnConnectFail = false
+            };
+            config.EndPoints.Add("localhost", 6379);
+            config.SetDefaultPorts();
+            var connection = await ConnectionMultiplexer.ConnectAsync(config, writer);
+            connection.ConnectionFailed += (_, e) =>
+            {
+                Console.WriteLine("Connection to Redis failed.");
+            };
+
+            if (!connection.IsConnected)
+            {
+                Console.WriteLine("Did not connect to Redis.");
+            }
+
+            return connection;
+        };
+    });
+
 
 services.AddControllers(option=>
 {
