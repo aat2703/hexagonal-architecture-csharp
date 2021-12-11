@@ -22,7 +22,7 @@ public class RegisterShopController : Controller
     public async Task<IActionResult> Handle([FromBody] RegisterShopRequest request)
     {
         var command = RegisterShopCommand.From(request.Name, request.Email);
-            
+        
         var task = await _mediator.Send(command);
         
         return Created(new Uri("/shops/" + task.Id), RegisterShopResponse.FromShopData(task.Result));

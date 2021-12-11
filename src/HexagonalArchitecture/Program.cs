@@ -5,6 +5,7 @@ using HexagonalArchitecture.Domain.Shop.Repository;
 using HexagonalArchitecture.Infrastructure.Http.Filter;
 using HexagonalArchitecture.Infrastructure.Persistence;
 using HexagonalArchitecture.Infrastructure.Persistence.Context;
+using HexagonalArchitecture.Infrastructure.SignalR;
 using MediatR;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,11 +16,13 @@ var services = builder.Services;
 
 services.AddScoped<ShopRepository, ShopRepositoryUsingMySql>();
 services.AddScoped<ShopFactory>();
+services.AddTransient<ShopHub>();
 services.AddMediatR(Assembly.GetCallingAssembly());
 services.AddLogging();
 services.AddSwaggerGen();
 services.AddMvc().AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<Program>());
 services.AddFluentValidationRulesToSwagger();
+services.AddSignalR().AddStackExchangeRedis("localhost");
 
 services.AddControllers(option=>
 {
@@ -44,6 +47,18 @@ if (app.Environment.IsDevelopment())
         options.RoutePrefix = string.Empty;
     });
 }
+
+app.UseCors(corsBuilder => corsBuilder
+        .AllowAnyOrigin() 
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+    );
+
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ShopHub>("/message-hub");
+});
 
 app.UseStaticFiles();
 app.MapControllers();

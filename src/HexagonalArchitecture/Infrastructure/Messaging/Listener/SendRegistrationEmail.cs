@@ -1,12 +1,20 @@
 using HexagonalArchitecture.Domain.Shop.Event;
+using HexagonalArchitecture.Infrastructure.SignalR;
 using MediatR;
 
 namespace HexagonalArchitecture.Infrastructure.Messaging.Listener;
 
 public class ShopRegistrationEmail : INotificationHandler<ShopRegistered>
 {
-    public Task Handle(ShopRegistered notification, CancellationToken cancellationToken)
+    private readonly ShopHub _hub;
+
+    public ShopRegistrationEmail(ShopHub hub)
     {
-        return Task.CompletedTask;
+        _hub = hub;
+    }
+    
+    public async Task Handle(ShopRegistered notification, CancellationToken cancellationToken)
+    {
+        await _hub.ShopRegistered(notification.Id);
     }
 }
