@@ -1,6 +1,21 @@
 version: "3.9"
 services:
   
+  hexagonal-architecture-webservice:
+    container_name: hexagonal-architecture-webservice
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    ports:
+      - 5072:5072
+    volumes:
+      - ./src/HexagonalArchitecture:/HexagonalArchitecture
+    working_dir: /HexagonalArchitecture
+    command:
+      - /bin/bash
+      - -c
+      - |
+        dotnet dev-certs https --trust
+        dotnet watch run
+
   hexagonal-architecture-db:
     image: mysql:8
     platform: linux/amd64

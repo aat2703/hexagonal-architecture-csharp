@@ -22,6 +22,6 @@ public class GetShopByIdController : Controller
             
         var task = await _mediator.Send(command);
 
-        return Ok(RegisterShopResponse.FromShopData(task.Result));
+        return Ok(GetShopByIdResponse.FromShopData(task.Result));
     }
 }

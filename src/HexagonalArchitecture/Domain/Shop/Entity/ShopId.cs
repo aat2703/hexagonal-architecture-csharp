@@ -16,7 +16,7 @@ public class ShopId
     {
         return new ShopId(id);
     }
-        
+    
     public static ShopId FromString(string id)
     {
         return new ShopId(Guid.Parse(id));

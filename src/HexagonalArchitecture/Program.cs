@@ -32,7 +32,7 @@ services.AddSignalR()
             {
                 AbortOnConnectFail = false
             };
-            config.EndPoints.Add("localhost", 6379);
+            config.EndPoints.Add("hexagonal-architecture-redis", 6379);
             config.SetDefaultPorts();
             var connection = await ConnectionMultiplexer.ConnectAsync(config, writer);
             connection.ConnectionFailed += (_, e) =>
@@ -49,7 +49,6 @@ services.AddSignalR()
         };
     });
 
-
 services.AddControllers(option=>
 {
     option.Filters.Add(new RequestValidation());
@@ -58,10 +57,12 @@ services.AddControllers(option=>
 
 services.AddDbContext<ShopDbContext>(
     dbContextOptions => dbContextOptions
-        .UseMySql(builder.Configuration["ConnectionStrings:shopContext"], new MySqlServerVersion(new Version(8,0,27)))
+        .UseMySql(builder.Configuration["ConnectionStrings:mysql"], new MySqlServerVersion(new Version(8,0,27)))
 );
 
 var app = builder.Build();
+
+app.Urls.Add("http://*:5072");
 
 if (app.Environment.IsDevelopment())
 {
