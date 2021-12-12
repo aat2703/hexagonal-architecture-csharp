@@ -1,6 +1,6 @@
 namespace HexagonalArchitecture.Infrastructure.Http.Response;
 
-public class ErrorModel
+public sealed class ErrorModel
 {
     public string? Context { get; set; }
 

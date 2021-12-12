@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HexagonalArchitecture.Infrastructure.Http.Shop.GetShopById;
 
-public class GetShopByIdController : Controller
+public sealed class GetShopByIdController : Controller
 {
     private readonly IMediator _mediator;
         

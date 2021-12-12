@@ -3,7 +3,7 @@ using MediatR;
 
 namespace HexagonalArchitecture.Application.UseCases.Shop.RegisterShop
 {
-    public class RegisterShopCommand : IRequest<Task<ShopData>>
+    public sealed class RegisterShopCommand : IRequest<Task<ShopData>>
     {
         public string Name { get; init; }
         

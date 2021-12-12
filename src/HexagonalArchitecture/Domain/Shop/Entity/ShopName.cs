@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 namespace HexagonalArchitecture.Domain.Shop.Entity;
 
 [Owned]
-public class ShopName
+public sealed class ShopName
 {
     public string Name { get; }
 

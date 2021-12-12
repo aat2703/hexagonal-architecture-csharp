@@ -4,7 +4,7 @@ using MediatR;
 
 namespace HexagonalArchitecture.Infrastructure.Messaging.Listener;
 
-public class ShopRegistrationEmail : INotificationHandler<ShopRegistered>
+public sealed class ShopRegistrationEmail : INotificationHandler<ShopRegistered>
 {
     private readonly ShopHub _hub;
 

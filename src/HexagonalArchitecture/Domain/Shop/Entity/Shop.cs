@@ -2,7 +2,7 @@ using HexagonalArchitecture.Domain.Shop.Event;
 
 namespace HexagonalArchitecture.Domain.Shop.Entity;
 
-public class Shop : Shared.Entity.Entity
+public sealed class Shop : Shared.Entity.Entity
 {
     public Guid Id { get; init; }
 

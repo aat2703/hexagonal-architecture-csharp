@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace HexagonalArchitecture.Infrastructure.Http.Filter;
 
-public class HttpResponseExceptionFilter : IActionFilter
+public sealed class HttpResponseExceptionFilter : IActionFilter
 {
     public int Order => int.MaxValue - 10;
 

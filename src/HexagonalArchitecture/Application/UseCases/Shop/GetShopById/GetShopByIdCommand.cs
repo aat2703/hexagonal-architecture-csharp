@@ -3,7 +3,7 @@ using MediatR;
 
 namespace HexagonalArchitecture.Application.UseCases.Shop.GetShopById
 {
-    public class GetShopByIdCommand : IRequest<Task<ShopData>>
+    public sealed class GetShopByIdCommand : IRequest<Task<ShopData>>
     {
         public Guid Id { get; init; }
 

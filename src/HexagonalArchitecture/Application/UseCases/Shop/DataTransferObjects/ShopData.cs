@@ -1,6 +1,6 @@
 namespace HexagonalArchitecture.Application.UseCases.Shop.DataTransferObjects;
 
-public class ShopData
+public sealed class ShopData
 {
     public Guid Id { get; init; }
     

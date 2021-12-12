@@ -5,7 +5,7 @@ using MediatR;
 
 namespace HexagonalArchitecture.Application.UseCases.Shop.GetShopById
 {
-    public class GetShopByIdService : RequestHandler<GetShopByIdCommand, Task<ShopData>>
+    public sealed class GetShopByIdService : RequestHandler<GetShopByIdCommand, Task<ShopData>>
     {
         private readonly ShopRepository _shopRepository;
         

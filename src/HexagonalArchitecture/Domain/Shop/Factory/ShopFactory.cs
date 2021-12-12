@@ -4,7 +4,7 @@ using HexagonalArchitecture.Domain.Shop.Repository;
 
 namespace HexagonalArchitecture.Domain.Shop.Factory;
 
-public class ShopFactory 
+public sealed class ShopFactory 
 {
     private readonly ShopRepository _shopRepository;
 

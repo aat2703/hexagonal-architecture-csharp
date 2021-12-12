@@ -1,7 +1,7 @@
 
 namespace HexagonalArchitecture.Domain.Shop.Entity;
 
-public class ShopId
+public sealed class ShopId
 {
     private Guid id;
 

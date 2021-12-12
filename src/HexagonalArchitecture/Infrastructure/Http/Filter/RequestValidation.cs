@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace HexagonalArchitecture.Infrastructure.Http.Filter;
 
-public class RequestValidation : ActionFilterAttribute
+public sealed class RequestValidation : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext context)
     {

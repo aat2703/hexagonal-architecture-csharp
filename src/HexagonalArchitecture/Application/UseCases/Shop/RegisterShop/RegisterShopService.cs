@@ -5,7 +5,7 @@ using MediatR;
 
 namespace HexagonalArchitecture.Application.UseCases.Shop.RegisterShop;
 
-public class RegisterShopService : RequestHandler<RegisterShopCommand, Task<ShopData>>
+public sealed class RegisterShopService : RequestHandler<RegisterShopCommand, Task<ShopData>>
 {
     private readonly ShopFactory _shopFactory;
     private readonly ShopRepository _shopRepository;

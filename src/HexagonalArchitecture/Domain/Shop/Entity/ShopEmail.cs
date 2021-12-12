@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace HexagonalArchitecture.Domain.Shop.Entity;
 
 [Owned]
-public class ShopEmail
+public sealed class ShopEmail
 {
     public string Email { get; }
     

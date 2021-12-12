@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 namespace HexagonalArchitecture.Domain.Shop.Entity;
 
 [Owned]
-public class ShopCreated
+public sealed class ShopCreated
 {
     public DateTime Created { get; set; }
     

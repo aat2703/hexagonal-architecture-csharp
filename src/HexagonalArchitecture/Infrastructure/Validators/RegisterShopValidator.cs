@@ -3,7 +3,7 @@ using HexagonalArchitecture.Infrastructure.Http.Shop.RegisterShop;
 
 namespace HexagonalArchitecture.Infrastructure.Validators;
 
-public class RegisterShopValidator : AbstractValidator<RegisterShopRequest>
+public sealed class RegisterShopValidator : AbstractValidator<RegisterShopRequest>
 {
     public RegisterShopValidator()
     {

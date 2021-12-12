@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HexagonalArchitecture.Infrastructure.Http.Shop.RegisterShop;
 
-public class RegisterShopController : Controller
+public sealed class RegisterShopController : Controller
 {
     private readonly IMediator _mediator;
     

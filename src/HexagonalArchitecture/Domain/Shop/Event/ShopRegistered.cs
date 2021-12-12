@@ -3,7 +3,7 @@ using MediatR;
 
 namespace HexagonalArchitecture.Domain.Shop.Event;
 
-public class ShopRegistered : INotification
+public sealed class ShopRegistered : INotification
 {
     public ShopId Id { get; init; }
     

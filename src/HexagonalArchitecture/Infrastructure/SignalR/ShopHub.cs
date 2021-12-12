@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace HexagonalArchitecture.Infrastructure.SignalR;
 
-public class ShopHub : Hub
+public sealed class ShopHub : Hub
 {
     public async Task ShopRegistered(ShopId id)
     {

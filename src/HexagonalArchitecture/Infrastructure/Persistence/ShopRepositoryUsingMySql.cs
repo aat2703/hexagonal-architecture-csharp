@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HexagonalArchitecture.Infrastructure.Persistence;
 
-public class ShopRepositoryUsingMySql : ShopRepository
+public sealed class ShopRepositoryUsingMySql : ShopRepository
 {
     private readonly ShopDbContext _shopDbContext;
     public ShopRepositoryUsingMySql(ShopDbContext shopDbContext)
