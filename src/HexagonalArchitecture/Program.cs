@@ -23,6 +23,19 @@ services.AddLogging();
 services.AddSwaggerGen();
 services.AddMvc().AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<Program>());
 services.AddFluentValidationRulesToSwagger();
+services.AddStackExchangeRedisCache(async options =>
+    {
+        var configurationOptions = new ConfigurationOptions
+        {
+            AbortOnConnectFail = false
+        };
+        
+        configurationOptions.EndPoints.Add(builder.Configuration["ConnectionStrings:mysql"], 6379);
+
+        options.ConfigurationOptions = configurationOptions;
+    }
+);
+
 services.AddSignalR()
     .AddStackExchangeRedis(o =>
     {
@@ -32,7 +45,7 @@ services.AddSignalR()
             {
                 AbortOnConnectFail = false
             };
-            config.EndPoints.Add("hexagonal-architecture-redis", 6379);
+            config.EndPoints.Add(builder.Configuration["ConnectionStrings:redis"], 6379);
             config.SetDefaultPorts();
             var connection = await ConnectionMultiplexer.ConnectAsync(config, writer);
             connection.ConnectionFailed += (_, e) =>
@@ -62,10 +75,10 @@ services.AddDbContext<ShopDbContext>(
 
 var app = builder.Build();
 
-app.Urls.Add("http://*:5072");
+if (app.Environment.IsDevelopment()) {
+    
+    app.Urls.Add("http://*:5072");
 
-if (app.Environment.IsDevelopment())
-{
     app.UseSwagger();
     
     app.UseSwaggerUI(options =>
@@ -73,6 +86,8 @@ if (app.Environment.IsDevelopment())
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
         options.RoutePrefix = string.Empty;
     });
+} else {
+    app.Urls.Add("http://*:443");
 }
 
 app.UseCors(corsBuilder => corsBuilder

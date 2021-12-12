@@ -9,7 +9,7 @@ namespace HexagonalArchitecture.Infrastructure.Http.Shop.RegisterShop;
 public sealed class RegisterShopController : Controller
 {
     private readonly IMediator _mediator;
-    
+
     public RegisterShopController(IMediator mediator)
     {
         _mediator = mediator;
@@ -23,8 +23,8 @@ public sealed class RegisterShopController : Controller
     {
         var command = RegisterShopCommand.From(request.Name, request.Email);
 
-        var task = await _mediator.Send(command);
-        
-        return Created(new Uri("/shops/" + task.Id), RegisterShopResponse.FromShopData(task.Result));
+        var result = await _mediator.Send(command).Result;
+
+        return Created(new Uri("/shops/" + result.Id), RegisterShopResponse.FromShopData(result));
     }
 }

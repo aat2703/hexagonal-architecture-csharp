@@ -8,7 +8,7 @@ namespace HexagonalArchitecture.Infrastructure.Http.Shop.GetShopById;
 public sealed class GetShopByIdController : Controller
 {
     private readonly IMediator _mediator;
-        
+
     public GetShopByIdController(IMediator mediator)
     {
         _mediator = mediator;
@@ -20,8 +20,8 @@ public sealed class GetShopByIdController : Controller
     {
         var command = GetShopByIdCommand.FromId(id);
             
-        var task = await _mediator.Send(command);
-
-        return Ok(GetShopByIdResponse.FromShopData(task.Result));
+        var result = await _mediator.Send(command).Result;
+        
+        return Ok(GetShopByIdResponse.FromShopData(result));
     }
 }
