@@ -1,21 +1,36 @@
 version: "3.9"
 services:
   
-  hexagonal-architecture-webservice:
-    container_name: hexagonal-architecture-webservice
+  hexagonal-architecture-api:
+    container_name: hexagonal-architecture-api
     image: mcr.microsoft.com/dotnet/sdk:6.0
     ports:
       - 5072:5072
     volumes:
-      - ./src/HexagonalArchitecture:/HexagonalArchitecture
-    working_dir: /HexagonalArchitecture
+      - ./src:/src
+    working_dir: /src/HexagonalArchitecture.Api
     command:
       - /bin/bash
       - -c
       - |
         dotnet dev-certs https --trust
         dotnet watch run
-
+  
+  hexagonal-architecture-worker:
+    container_name: hexagonal-architecture-worker
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    volumes:
+      - ./src:/src
+    working_dir: /src/HexagonalArchitecture.Worker
+    depends_on:
+      - hexagonal-architecture-rabbitmq
+    command:
+      - /bin/bash
+      - -c
+      - |
+        dotnet dev-certs https --trust
+        dotnet watch --project HexagonalArchitecture.Worker.csproj
+  
   hexagonal-architecture-db:
     image: mysql:8
     platform: linux/amd64
@@ -38,4 +53,14 @@ services:
     tty: true
     ports:
       - "6379:6379"
+    restart: always
+    
+  hexagonal-architecture-rabbitmq:
+    image: rabbitmq:3-management-alpine
+    platform: linux/arm64
+    container_name: hexagonal-architecture-rabbitmq
+    tty: true
+    ports:
+      - 5672:5672
+      - 15672:15672
     restart: always

@@ -1,5 +1,5 @@
 using System;
-using HexagonalArchitecture.Domain.Shop.Entity;
+using HexagonalArchitecture.Api.Domain.Shop.Entity;
 using Xunit;
 
 namespace Unit;
