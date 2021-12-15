@@ -14,10 +14,12 @@ services.AddSharedServices(builder.Configuration);
 
 services.AddMassTransit(x =>
 {
+    x.AddPublishMessageScheduler();
     x.UsingRabbitMq(
         (cfg, context) =>
         {
             context.Host("hexagonal-architecture-rabbitmq");
+            context.UsePublishMessageScheduler();
             context.ConfigureEndpoints(cfg);
         });
 });

@@ -9,11 +9,13 @@ var host = Host.CreateDefaultBuilder()
         services.AddSharedServices(context.Configuration);
         services.AddMassTransit(x =>
         {
+            x.AddPublishMessageScheduler();
             x.UsingRabbitMq(
                 (cfg, c) =>
                 {
                     c.Host("hexagonal-architecture-rabbitmq");
                     c.ConfigureEndpoints(cfg);
+                    c.UseDelayedMessageScheduler();
                 }
             );
             x.AddConsumer<SendShopRegisteredEmailConsumer>();
